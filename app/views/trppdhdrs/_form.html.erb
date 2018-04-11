@@ -1,0 +1,28 @@
+<%= form_for(@trppdhdr) do |f| %>
+  <% if @trppdhdr.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@trppdhdr.errors.count, "error") %> prohibited this trppdhdr from being saved:</h2>
+
+      <ul>
+      <% @trppdhdr.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :tgl_berlaku %><br>
+    <%= f.text_field :tgl_berlaku %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+// dateFormat: 'yy-mm-dd'
+  $('#trppdhdr_tgl_berlaku').click(function(){
+    $('#trppdhdr_tgl_berlaku').datepicker(dateFormat: 'yy-mm-dd');
+  });
+</script>

@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Trppdhdrs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tgl berlaku</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @trppdhdrs.each do |trppdhdr| %>
+      <tr>
+        <td><%= trppdhdr.tgl_berlaku %></td>
+        <td><%= link_to 'Show', trppdhdr %></td>
+        <td><%= link_to 'Edit', edit_trppdhdr_path(trppdhdr) %></td>
+        <td><%= link_to 'Destroy', trppdhdr, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Trppdhdr', new_trppdhdr_path %>

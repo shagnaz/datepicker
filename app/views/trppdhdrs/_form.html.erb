@@ -1,4 +1,4 @@
-<%= form_for(@trppdhdr) do |f| %>
+<%= nested_form_for(@trppdhdr) do |f| %>
   <% if @trppdhdr.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@trppdhdr.errors.count, "error") %> prohibited this trppdhdr from being saved:</h2>
@@ -13,7 +13,21 @@
 
   <div class="field">
     <%= f.label :tgl_berlaku %><br>
-    <%= f.text_field :tgl_berlaku %>
+    <%= f.text_field :tgl_berlaku, class: 'test' %>
+  </div>
+  <!-- bagian nested nya -->
+  <div class="field">
+    <%= f.fields_for :tr_dtl_channels do |ff| %>
+
+      <%= ff.collection_select :ms_channel_id , MsChannel.order(:name),:id, :name, {include_blank: 'pilih channel'} %>
+      <%= ff.link_to_remove do %>
+        <i>Delete</i>
+      <% end %>
+    <% end %>
+
+    <%= f.link_to_add :tr_dtl_channels do %>
+      <i>Add</i>
+    <% end %>
   </div>
   <div class="actions">
     <%= f.submit %>
@@ -21,8 +35,9 @@
 <% end %>
 
 <script type="text/javascript">
-// dateFormat: 'yy-mm-dd'
-  $('#trppdhdr_tgl_berlaku').click(function(){
-    $('#trppdhdr_tgl_berlaku').datepicker(dateFormat: 'yy-mm-dd');
+
+$('#')
+  $(function(){
+    $('.test').datepicker({dateFormat:'dd/mm/yy'});
   });
 </script>

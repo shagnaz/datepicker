@@ -1,0 +1,2 @@
+module MsChannelsHelper
+end

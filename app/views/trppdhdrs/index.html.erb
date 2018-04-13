@@ -1,11 +1,33 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Trppdhdrs</h1>
+<!-- 
+    halo ka agung aku ada banyak pertanyaan terutama mengenai nested_form
+    1. jadi di tempatku tidak boleh ada delete, destroy semacam penghapusan data. tetapi jadinya diganti dengan is_active true atau false dan juga di tempatku itu menggunakan scaffold
 
+    pertanyaan: jadi ada parent si trppdhdrs mempunyai nested tr_dtl_channel
+    ketika create si child tr_dtl_channel harusnya true, tapi masih nill.
+    aku udah coba beberapa cara seperti 
+     -is_active nya aku buat true di controller child nya belum berhasil
+     -aku lempar params si nested nya di controller child belum berhasil, tetapi berhasil di kondisi aku taruh update. jadi pas create terus aku coba edit dan add si nested nya itu keganti true
+     aku coba aplikasikan ini juga di project ku tapi mengalami beberapa error jadi apakah ada cara lain
+
+     kesimpulan: bagaimana isi value di child ketika create?
+                kenapa ketika create di parent tidak masuk ke controller si nested nya?
+
+      2. seperti tampilan index di channel itu kan data dari nested yang pasti berulang.
+      bagaimana caranya supaya ambil satu data saja, seperti misalkan dia add 3 nested channel modern, tetapi ditampilan index hanya modern satu untuk satu id dari master nya, yang di tampilkan tidak modern modern modern
+
+      3. karena tidak boleh ada destroy bagaimana cara delete si nested dengan mengganti dengan is_active false?
+
+      terimakasih ka 
+ -->
 <table>
   <thead>
     <tr>
       <th>Tgl berlaku</th>
+      <th>Is Active</th>
+      <th>Channel</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,7 +36,13 @@
     <% @trppdhdrs.each do |trppdhdr| %>
       <tr>
         <td><%= trppdhdr.tgl_berlaku %></td>
-        <td><%= link_to 'Show', trppdhdr %></td>
+        <td><%= trppdhdr.is_active rescue '' %></td>
+        <td>
+            <% trppdhdr.tr_dtl_channels.each do |channel| %>
+              <%= channel.ms_channel.name rescue '' %>
+            <% end %>
+        </td>
+        <td><%= link_to 'Show', trppdhdr_path(trppdhdr) %></td>
         <td><%= link_to 'Edit', edit_trppdhdr_path(trppdhdr) %></td>
         <td><%= link_to 'Destroy', trppdhdr, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

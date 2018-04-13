@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ms_channel_id: 1
+  tr_ppd_hdr_id: 1
+  name_dropdown: MyString
+  is_active: false
+
+two:
+  ms_channel_id: 1
+  tr_ppd_hdr_id: 1
+  name_dropdown: MyString
+  is_active: false

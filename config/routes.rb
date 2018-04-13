@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :tr_dtl_channels
+  resources :ms_channels
   resources :trppdhdrs
   root 'trppdhdrs#index'
   # The priority is based upon order of creation: first created -> highest priority.

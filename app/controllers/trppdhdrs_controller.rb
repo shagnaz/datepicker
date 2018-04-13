@@ -25,7 +25,14 @@ class TrppdhdrsController < ApplicationController
   # POST /trppdhdrs.json
   def create
     @trppdhdr = Trppdhdr.new(trppdhdr_params)
+    @trppdhdr.is_active = true
 
+    # cara ini untuk memasukan value is active di tabel nested nya yaitu tr_dtl_channel
+    # cara ini berhasil ketika coba di update, tetapi ketika create baru tidak
+    params[:trppdhdr][:tr_dtl_channels_attributes].values.each do |channel|
+      channel[:is_active] = true
+    end if params[:trppdhdr][:tr_dtl_channels_attributes]
+  
     respond_to do |format|
       if @trppdhdr.save
         format.html { redirect_to @trppdhdr, notice: 'Trppdhdr was successfully created.' }
@@ -40,6 +47,12 @@ class TrppdhdrsController < ApplicationController
   # PATCH/PUT /trppdhdrs/1
   # PATCH/PUT /trppdhdrs/1.json
   def update
+    # ini cara yang aku pakai untuk memasukan value true ke child nya, kalau edit terus aku add nested baru dia berhasil true
+    # tapi pas create new dari awal is_active masih nil
+    params[:trppdhdr][:tr_dtl_channels_attributes].values.each do |channel|
+      channel[:is_active] = true
+    end if params[:trppdhdr][:tr_dtl_channels_attributes]
+    # 
     respond_to do |format|
       if @trppdhdr.update(trppdhdr_params)
         format.html { redirect_to @trppdhdr, notice: 'Trppdhdr was successfully updated.' }
@@ -61,6 +74,12 @@ class TrppdhdrsController < ApplicationController
     end
   end
 
+  def in_active_nested
+    params[:trppdhdr][:tr_dtl_channels_attributes].values.each do |channel|
+      channel[:is_active] = false
+    end if params[:trppdhdr][:tr_dtl_channels_attributes][:destroy]
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_trppdhdr
@@ -69,6 +88,6 @@ class TrppdhdrsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def trppdhdr_params
-      params.require(:trppdhdr).permit(:tgl_berlaku)
+      params.require(:trppdhdr).permit(:tgl_berlaku, :is_active,tr_dtl_channels_attributes: TrDtlChannel.attribute_names.map(&:to_sym).push(:_destroy))
     end
 end

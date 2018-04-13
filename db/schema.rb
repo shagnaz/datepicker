@@ -11,12 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180411114507) do
+ActiveRecord::Schema.define(version: 20180413221915) do
+
+  create_table "ms_channels", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "is_active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tr_dtl_channels", force: :cascade do |t|
+    t.integer  "ms_channel_id"
+    t.string   "name_dropdown"
+    t.boolean  "is_active"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "trppdhdr_id"
+  end
 
   create_table "trppdhdrs", force: :cascade do |t|
     t.date     "tgl_berlaku"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.boolean  "is_active"
   end
 
 end

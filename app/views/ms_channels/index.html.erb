@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Ms Channels</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Is active</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ms_channels.each do |ms_channel| %>
+      <tr>
+        <td><%= ms_channel.name %></td>
+        <td><%= ms_channel.is_active %></td>
+        <td><%= link_to 'Show', ms_channel %></td>
+        <td><%= link_to 'Edit', edit_ms_channel_path(ms_channel) %></td>
+        <td><%= link_to 'Destroy', ms_channel, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ms channel', new_ms_channel_path %>

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @ms_channel.name %>
+</p>
+
+<p>
+  <strong>Is active:</strong>
+  <%= @ms_channel.is_active %>
+</p>
+
+<%= link_to 'Edit', edit_ms_channel_path(@ms_channel) %> |
+<%= link_to 'Back', ms_channels_path %>

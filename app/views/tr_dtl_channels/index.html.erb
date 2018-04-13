@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Tr Dtl Channels</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ms channel</th>
+      <th>Tr ppd hdr</th>
+      <th>Name dropdown</th>
+      <th>Is active</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tr_dtl_channels.each do |tr_dtl_channel| %>
+      <tr>
+        <td><%= tr_dtl_channel.ms_channel_id %></td>
+        <td><%= tr_dtl_channel.tr_ppd_hdr_id %></td>
+        <td><%= tr_dtl_channel.name_dropdown %></td>
+        <td><%= tr_dtl_channel.is_active %></td>
+        <td><%= link_to 'Show', tr_dtl_channel %></td>
+        <td><%= link_to 'Edit', edit_tr_dtl_channel_path(tr_dtl_channel) %></td>
+        <td><%= link_to 'Destroy', tr_dtl_channel, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tr dtl channel', new_tr_dtl_channel_path %>

@@ -1,0 +1,33 @@
+<%= form_for(@tr_dtl_channel) do |f| %>
+  <% if @tr_dtl_channel.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tr_dtl_channel.errors.count, "error") %> prohibited this tr_dtl_channel from being saved:</h2>
+
+      <ul>
+      <% @tr_dtl_channel.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :ms_channel_id %><br>
+    <%= f.number_field :ms_channel_id %>
+  </div>
+  <div class="field">
+    <%= f.label :tr_ppd_hdr_id %><br>
+    <%= f.number_field :tr_ppd_hdr_id %>
+  </div>
+  <div class="field">
+    <%= f.label :name_dropdown %><br>
+    <%= f.text_field :name_dropdown %>
+  </div>
+  <div class="field">
+    <%= f.label :is_active %><br>
+    <%= f.check_box :is_active %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
